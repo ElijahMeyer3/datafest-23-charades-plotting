@@ -1,0 +1,98 @@
+---
+title: "charades-plotting"
+format: html
+editor: visual
+---
+
+## How to Play
+
+Put a plot up on a projector from the penguins data set and have 1 person on the team face away from the projector and be the designated “coder”
+
+The teammates, who could see the projector, had to tell them what to plot (variables, type of plot, colors etc) without using any words.
+
+Everyone posts their plot in slack and then the winning team (team with the closest plot) gets a prize.
+
+## Plots to show 
+
+```{r}
+
+library(tidyverse)
+library(palmerpenguins)
+
+```
+
+
+### Plot 1 
+
+```{r}
+ 
+penguins |>
+  ggplot(aes(
+    x = flipper_length_mm, y = bill_length_mm , color = species
+  )) + 
+    geom_point() + 
+    geom_smooth(se = F) + 
+  labs(
+    title = "Bill and Flipper Length by Species"
+  )
+
+
+```
+
+
+### Plot 2
+
+```{r}
+
+penguins |>
+  ggplot(
+    aes(x = species)) + 
+  geom_bar() + 
+  facet_wrap(~island) + 
+  labs(title = "Species facet by Island")
+
+```
+
+
+### Plot 3 
+
+```{r}
+penguins |>
+  ggplot(
+    aes(x = bill_depth_mm, y = sex)
+  ) + 
+  geom_boxplot(notch = TRUE) + 
+  labs(title = "Boxplot of bill depth by sex")
+
+
+```
+
+
+### Plot 4 
+
+```{r}
+penguins |>
+  ggplot(
+    aes(x = body_mass_g)) + 
+      geom_density(color = "blue" , fill = "white") + 
+  labs(title = "Density plot of body mass")
+
+
+```
+
+
+
+
+### Plot 5 
+
+```{r}
+penguins |>
+  ggplot(
+    aes(x = island, y = flipper_length_mm)
+  ) + 
+  geom_col(aes(color = sex, fill = sex), position = position_stack()) +
+  labs(title = "Flipper length by island stacked and colored by sex")
+  
+
+```
+
